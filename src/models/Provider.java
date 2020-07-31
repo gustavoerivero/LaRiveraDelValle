@@ -1,0 +1,80 @@
+
+package models;
+
+/**
+ *
+ * @author Gustavo
+ */
+public class Provider {
+    
+    private int     id;
+    
+    private String  name,
+                    description,
+                    direction;
+    
+    private long    phone;
+    
+    private char    state;
+
+    public Provider(int id, String name, String description, String direction, 
+            long phone, char state) {
+        
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.direction = direction;
+        this.phone = phone;
+        this.state = state;
+        
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(long phone) {
+        this.phone = phone;
+    }
+
+    public char getState() {
+        return state;
+    }
+
+    public void setState(char state) {
+        this.state = state;
+    }
+       
+}
