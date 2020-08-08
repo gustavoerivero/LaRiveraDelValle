@@ -4,7 +4,7 @@ package models;
 import java.util.Date;
 
 /**
- *
+ * Clase de Venta.
  * @author Gustavo
  */
 public class Sale {
@@ -21,12 +21,23 @@ public class Sale {
     
     private char    state;
 
-    public Sale(int id, int employeeId, int providerId, Date date, 
+    /**
+     * Constructor de la clase Venta.
+     * @param id Atributo identificador (Autoincrementable).
+     * @param employeeId Atributo identificador del empleado asociado a la venta.
+     * @param clientId Atributo identificador del cliente asociado a la venta.
+     * @param date Fecha de la venta.
+     * @param subtotal Subtotal de la venta.
+     * @param iva IVA de la venta.
+     * @param total Total de la venta.
+     * @param state Estado (Activo o Inactivo).
+     */
+    public Sale(int id, int employeeId, int clientId, Date date, 
             double subtotal, double iva, double total, char state) {
         
         this.id = id;
         this.employeeId = employeeId;
-        this.clientId = providerId;
+        this.clientId = clientId;
         this.date = date;
         this.subtotal = subtotal;
         this.iva = iva;

@@ -2,7 +2,7 @@
 package models;
 
 /**
- *
+ * Clase de Notificación.
  * @author Gustavo
  */
 public class Notification {
@@ -14,6 +14,13 @@ public class Notification {
     private char    type,
                     state;
 
+    /**
+     * Constructor de la clase Notificación.
+     * @param id Atributo identificador (Autoincrementable).
+     * @param message Mensaje de la notificación.
+     * @param type Tipo de mensaje.
+     * @param state Estado (Activo o Inactivo).
+     */
     public Notification(int id, String message, char type, char state) {
         
         this.id = id;

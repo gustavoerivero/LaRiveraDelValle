@@ -2,7 +2,7 @@
 package models;
 
 /**
- *
+ * Clase de Producto.
  * @author Gustavo
  */
 public class Product {
@@ -18,6 +18,16 @@ public class Product {
     private char    type,
                     state;
 
+    /**
+     * Constructor de la clase Producto.
+     * @param id Atributo identificador (Autoincrementable).
+     * @param quantity Cantidad del producto.
+     * @param name Nombre del producto.
+     * @param description Descripción del producto.
+     * @param cost Costo del producto.
+     * @param type Tipo de producto.
+     * @param state Estado (Activo o Inactivo).
+     */
     public Product(int id, int quantity, String name, String description, 
             double cost, char type, char state) {
         

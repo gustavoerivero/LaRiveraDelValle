@@ -2,7 +2,7 @@
 package models;
 
 /**
- *
+ * Clase de Empleado.
  * @author Gustavo
  */
 public class Employee extends Person{
@@ -13,6 +13,19 @@ public class Employee extends Person{
     
     private char    job;
 
+    /**
+     * Constructor de la clase Empleado.
+     * @param id Atributo identificador (Autoincrementable).
+     * @param enterpriseId Atributo identificador de la empresa.
+     * @param name Nombre del empleado.
+     * @param surname Apellido del empleado.
+     * @param phone Teléfono del empleado.
+     * @param direction Dirección del empleado.
+     * @param email Correo electrónico del empleado.
+     * @param state Estado (Activo o Inactivo).
+     * @param dni Documento Nacional de Identidad del empleado.
+     * @param job Cargo del empleado.
+     */
     public Employee(int id, int enterpriseId, String name, String surname, 
             long phone, String direction, String email, char state,
             String dni, char job) {
@@ -48,6 +61,5 @@ public class Employee extends Person{
     public void setJob(char job) {
         this.job = job;
     }
-    
-       
+           
 }

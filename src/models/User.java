@@ -4,10 +4,12 @@ package models;
 import java.util.Date;
 
 /**
- *
+ * Clase de Usuario.
  * @author Gustavo
  */
 public class User {
+    
+    private int     id;
     
     private String  email,
                     password;
@@ -19,9 +21,21 @@ public class User {
     private Date    firstSession,
                     lastSession;
 
-    public User(String email, String password, char type, char rememberData, 
-            char state, Date firstSession, Date lastSession) {
+    /**
+     * Constructor de la clase Usuario.
+     * @param id Atributo identificador (Autoincrementable).
+     * @param email Correo electrónico del usuario.
+     * @param password Contraseña del usuario.
+     * @param type Tipo de usuario.
+     * @param rememberData Se recuerda la información del usuario.
+     * @param state Estado (Activo o Inactivo).
+     * @param firstSession Primer inicio de sesión del usuario.
+     * @param lastSession Último inicio de sesión del usuario.
+     */
+    public User(int id, String email, String password, char type, 
+            char rememberData, char state, Date firstSession, Date lastSession) {
         
+        this.id = id;
         this.email = email;
         this.password = password;
         this.type = type;
@@ -32,6 +46,14 @@ public class User {
         
     }
 
+    public int getId(){
+        return id;
+    }
+    
+    public void setId(int id){
+        this.id = id;
+    }
+    
     public String getEmail() {
         return email;
     }

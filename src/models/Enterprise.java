@@ -2,7 +2,7 @@
 package models;
 
 /**
- *
+ * Clase de Empresa
  * @author Gustavo
  */
 public class Enterprise {
@@ -19,6 +19,17 @@ public class Enterprise {
     
     private char    state;
 
+    /**
+     * Constructor de la clase Empresa.
+     * @param id Atributo identificador (Autoincrementable).
+     * @param rif Rif de la Empresa.
+     * @param name Nombre de la Empresa.
+     * @param description Descripción de la Empresa.
+     * @param direction Dirección de la Empresa.
+     * @param email Correo electrónico de la Empresa.
+     * @param phone Teléfono de la Empresa.
+     * @param state Estado (Activo o Inactivo).
+     */
     public Enterprise(int id, String rif, String name, String description, 
             String direction, String email, long phone, char state) {
         

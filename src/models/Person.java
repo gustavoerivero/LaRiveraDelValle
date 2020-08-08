@@ -1,20 +1,32 @@
 package models;
 
 /**
- *
+ * Clase de Persona.
  * @author Gustavo
  */
 public class Person {
 
-    private int id;
+    private int     id;
 
-    private String name,
-            surname,
-            direction,
-            email;
-    private long phone;
-    private char state;
+    private String  name,
+                    surname,
+                    direction,
+                    email;
+    
+    private long    phone;
+    
+    private char    state;
 
+    /**
+     * Constructor de la clase Persona.
+     * @param id Atributo identificador (Autoincrementable).
+     * @param name Nombre de la persona.
+     * @param surname Apellido de la persona.
+     * @param phone Teléfono de la persona.
+     * @param direction Dirección de la persona.
+     * @param email Correo electrónico de la persona.
+     * @param state Estado (Activo o Inactivo).
+     */
     public Person(int id, String name, String surname,
             long phone, String direction, String email, char state) {
 

@@ -2,99 +2,28 @@
 package models;
 
 /**
- *
+ * Clase de Cuenta Bancaria del Proveedor.
  * @author Gustavo
  */
-public class ProviderBankAccount {
-    
-    private int     id,
-                    providerId;
-    
-    private String  dni,
-                    bank,
-                    email;
-    
-    private long    account,
-                    phone;
-    
-    private char    state;
+public class ProviderBankAccount extends BankAccount{
 
-    public ProviderBankAccount(int id, int providerId, String dni, String bank, 
-            String email, long account, long phone, char state) {
+    /**
+     * Constructor de la clase de Cuenta Bancaria del Proveedor.
+     * @param id Atributo identificador (Autoincrementable).
+     * @param ownerId Atributo identificador del propietario de la cuenta.
+     * @param dni Documento Nacional de Identidad asociado a la cuenta.
+     * @param name Nombre asociado a la cuenta.
+     * @param bank Banco asociado a la cuenta.
+     * @param email Correo electrónico asociado a la cuenta.
+     * @param account Número de cuenta bancaria asociado a la cuenta.
+     * @param phone Teléfono asociado a la cuenta.
+     * @param state Estado (Activo o Inactivo).
+     */
+    public ProviderBankAccount(int id, int ownerId, String dni, String name, 
+            String bank, String email, long account, long phone, char state) {
         
-        this.id = id;
-        this.providerId = providerId;
-        this.dni = dni;
-        this.bank = bank;
-        this.email = email;
-        this.account = account;
-        this.phone = phone;
-        this.state = state;
-        
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getProviderId() {
-        return providerId;
-    }
-
-    public void setProviderId(int providerId) {
-        this.providerId = providerId;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    public String getBank() {
-        return bank;
-    }
-
-    public void setBank(String bank) {
-        this.bank = bank;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public long getAccount() {
-        return account;
-    }
-
-    public void setAccount(long account) {
-        this.account = account;
-    }
-
-    public long getPhone() {
-        return phone;
-    }
-
-    public void setPhone(long phone) {
-        this.phone = phone;
-    }
-
-    public char getState() {
-        return state;
-    }
-
-    public void setState(char state) {
-        this.state = state;
-    }
+        super(id, ownerId, dni, name, bank, email, account, phone, state);
     
+    }
+        
 }

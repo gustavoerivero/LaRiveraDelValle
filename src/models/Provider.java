@@ -2,7 +2,7 @@
 package models;
 
 /**
- *
+ * Clase de Proveedor.
  * @author Gustavo
  */
 public class Provider {
@@ -17,6 +17,15 @@ public class Provider {
     
     private char    state;
 
+    /**
+     * Constructor de la clase Proveedor.
+     * @param id Atributo identificador (Autoincrementable).
+     * @param name Nombre del proveedor.
+     * @param description Descripción del proveedor.
+     * @param direction Dirección del proveedor.
+     * @param phone Teléfono del proveedor.
+     * @param state Estado (Activo o Inactivo).
+     */
     public Provider(int id, String name, String description, String direction, 
             long phone, char state) {
         

@@ -4,7 +4,7 @@ package models;
 import java.util.Date;
 
 /**
- *
+ * Clase de Compra.
  * @author Gustavo
  */
 public class Purchase {
@@ -21,6 +21,17 @@ public class Purchase {
     
     private char    state;
 
+    /**
+     * Constructor de la clase Compra.
+     * @param id Atributo identificador (Autoincrementable).
+     * @param employeeId Atributo identificador del empleado asociado a la compra.
+     * @param providerId Atributo identificador del proveedor asociado a la compra.
+     * @param date Fecha de la compra.
+     * @param subtotal Subtotal de la compra.
+     * @param iva IVA de la compra.
+     * @param total Total de la compra.
+     * @param state Estado (Activo o Inactivo).
+     */
     public Purchase(int id, int employeeId, int providerId, Date date, 
             double subtotal, double iva, double total, char state) {
         
