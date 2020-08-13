@@ -13,7 +13,8 @@ public class Product {
     private String  name,
                     description;
     
-    private double  cost;
+    private double  cost,
+                    price;
     
     private char    type,
                     state;
@@ -25,17 +26,19 @@ public class Product {
      * @param name Nombre del producto.
      * @param description Descripción del producto.
      * @param cost Costo del producto.
+     * @param price Precio del producto.
      * @param type Tipo de producto.
      * @param state Estado (Activo o Inactivo).
      */
     public Product(int id, int quantity, String name, String description, 
-            double cost, char type, char state) {
+            double cost, double price, char type, char state) {
         
         this.id = id;
         this.quantity = quantity;
         this.name = name;
         this.description = description;
         this.cost = cost;
+        this.price = price;
         this.type = type;
         this.state = state;
         
@@ -81,6 +84,14 @@ public class Product {
         this.cost = cost;
     }
 
+    public double getPrice(){
+        return price;
+    }
+    
+    public void setPrice(double price){
+        this.price = price;
+    }
+    
     public char getType() {
         return type;
     }

@@ -7,6 +7,10 @@ package controllers;
  */
 public class ControllerMainMenu {
     
-    
+    public ControllerMainMenu(String type, String nameEmployee){
+        
+        
+        
+    }
     
 }

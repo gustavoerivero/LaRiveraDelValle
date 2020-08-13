@@ -2,6 +2,7 @@
 package models.database;
 
 import java.sql.ResultSet;
+import java.util.Date;
 import lib.ConnectionDB;
 import models.User;
 
@@ -146,45 +147,9 @@ public class UserDB {
         con.disconnect();
                  
     }
-    
+
     /**
-     * Método para obtener los datos de acceso del usuario que ingresa al sistema.
-     * @param email Correo Electrónico del usuario que está accediendo al sistema.
-     * @return Devuelve consulta.
-     */
-    public ResultSet getDataAccess(String email){
-        
-        // Se instancia la variable para la consulta.
-        ResultSet result;
-        
-        // Se declara e inicializa la sentencia SQL
-        String SQL  = "SELECT empleado.\"nombre\" as \"NombreEmpleado\", "
-                    + "\"apellido\" as \"ApellidoEmpleado\", rol.\"codigo\" as \"CodigoRol\", "
-                    + "sucursal.\"nombre\" as \"NombreSucursal\" FROM \"rol\", \"empleado\", "
-                    + "\"usuario\", \"sucursal\" WHERE rol.\"codigo\" = \"rol_codigo\" AND "
-                    + "\"empleado_cedula\" = \"cedula\" AND \"sucursal_codigo\" = sucursal.\"codigo\" "
-                    + "AND usuario.\"correo\" = '" + email + "' AND usuario.\"estado\" = 'A' AND "
-                    + "rol.\"estado\" = 'A' AND empleado.\"estado\" = 'A' AND sucursal.\"estado\" = 'A';";
-        
-        // Se instancia y se establece una conexión con la BD.
-        con = new ConnectionDB();
-        con.conectar();
-        
-        // Se realiza y se recibe la consulta.
-        result = con.queryConsultar(SQL);
-        
-        System.out.println("La consulta se realizó con éxito.");
-        
-        // Se desconecta la BD.
-        con.desconectar();
-        
-        // Retorna consulta.
-        return result;
-        
-    }
-    
-    /**
-     * Método para obtener los datos de una sala.
+     * Método para obtener los datos de un usuario.
      * @return Devuelve consulta.
      */
     public ResultSet readUserData(String email){
@@ -193,12 +158,11 @@ public class UserDB {
         ResultSet result;
         
         // Se define la sentencia SQL a aplicar en la BD.
-        String SQL = "SELECT usuario.\"correo\", empleado.\"nombre\" as \"Nombre\", "
-                   + "empleado.\"apellido\" as \"Apellido\", rol.\"nombre\" as \"rol\", "
-                   + "usuario.\"clave\" FROM \"usuario\", \"empleado\", \"rol\" "
-                   + "WHERE usuario.\"correo\" = '" + email + "' and \"empleado_cedula\" = empleado.\"cedula\" "
-                   + "and \"rol_codigo\" = rol.\"codigo\" and usuario.\"estado\" = 'A' "
-                   + "and empleado.\"estado\" = 'A' and rol.\"estado\" = 'A';";
+        String SQL = "SELECT \"dni\", \"name\", \"surname\", \"userEmail\", "
+                    + "\"type\", \"firstSession\", \"lastSession\" FROM \"user\", "
+                    + "\"employee\" WHERE \"email\" = \"userEmail\" AND \"email\" = '" 
+                    + email + "' AND \"user\".\"state\" = employee.\"state\" AND "
+                    + "employee.\"state\" = 'A';";
         
         // Se instancia y se establece una conexión con la BD.
         con = new ConnectionDB();
@@ -210,7 +174,7 @@ public class UserDB {
         System.out.println("La consulta se realizó con éxito.");
         
         // Se desconecta la BD.
-        con.desconectar();
+        con.disconnect();
         
         // Retorna consulta.
         return result;
@@ -254,18 +218,18 @@ public class UserDB {
         
     }
    
-    public void updateUser(User user, String email) {
+    public void updateUser(User user, String id) {
          
         // Se instancia la clase para la conexion con la BD y se establece la conexion.
         con = new ConnectionDB();
         con.connect(); 
 
         // Se descrie la sentencia SQL.
-        String SQL = "UPDATE \"user\" SET \"empleado_cedula\" = "
-                    + "'" + us.getEmployee_id() + "', "
-                    +  "\"rol_codigo\" = '" + us.getRole_id() + "', "
-                    +  "\"clave\" = '" + us.getPass() + "', "
-                    +  " WHERE \"correo\" = '" + us.getEmail() + "';";
+        String SQL = "UPDATE \"user\" SET \"email\" = '" + user.getEmail() + 
+                    "', \"password\" = '" + user.getPassword() + 
+                    "', \"type\" = '" + user.getType() + 
+                    "', \"state\" = '" + user.getState() + 
+                    "' WHERE \"id\" = " + id + ";";
             
         con.queryInsert(SQL);
             
@@ -310,5 +274,117 @@ public class UserDB {
         // Se desconecta la BD.
         con.disconnect();
     }
+    
+    /**
+     * Método para comprobar si el usuario que desea ingresar al sistema iniciará
+     * sesión por primera vez o no.
+     * @param email correo electrónico del usuario.
+     * @return variable booleana.
+     */
+    public boolean firstSessionUser(String email){
+        
+        try{
+            
+            // Se instancia la clase para la conexión con la BD y se establece la conexión.
+            con = new ConnectionDB();
+            con.connect();
+          
+            // Se descrie la sentencia SQL.
+            String SQL =    "SELECT \"firstSession\" FROM \"user\" WHERE \"email\" = '"
+                            + email + "' AND \"state\" = 'A';";
+            
+            // Se realiza la consulta y se obtiene el resultado.
+            java.sql.ResultSet rs = con.queryConsultar(SQL);
+            
+            // Se desconecta la BD.
+            con.disconnect();
+            
+            // Si se obtuvo un resultado de tipo 'null' (que tiene que ser único) retorna 'true'.
+            if(rs.getDate("firstSession") == null)
+                return true;
+            
+            
+        } catch (java.sql.SQLException ex){
+            System.out.println("No se pudo encontrar el usuario. Error: " + ex);
+        }
+        
+        // De no encontrarse un resultado 'null', retorna 'false'.
+        return false;
+        
+    }
+    
+    /**
+     * Método para actualizar fechas de un usuario.
+     * @param email Correo del usuario a actualizar fecha.
+     */
+    public void changeDateUser(String email) {
+        
+        // Se declara la variable de sentencia SQL.
+        String SQL = "";
+        
+        // Se declara e instancia la variable 'date' para indicar el momento del 'primer inicio' o 'último inicio' de sesión.
+        Date date = new Date();
+        
+        // Se instancia y se establece una conexión con la BD.
+        con = new ConnectionDB();
+        con.connect();
+            
+        if(firstSessionUser(email)){
+            
+            SQL = "UPDATE \"user\" SET \"firstSession\" = " + date
+                + "WHERE \"email\" = '" + email + "';";
+            
+            // Se realiza la inserción de datos.
+            con.queryInsert(SQL);
+            
+            // Se muestra mensaje de éxito.
+            System.out.println("La actualización del primer inicio del usuario "
+                    + "cuyo correo es '" + email + "' se ha efectuado con éxito.");
+            
+        }
+            
+        SQL = "UPDATE \"user\" SET \"lastSession\" = " + date
+            + "WHERE \"email\" = '" + email + "';";        
+        
+        // Se realiza la inserción de datos.
+        con.queryInsert(SQL);
+        
+        // Se muestra mensaje de éxito.
+        System.out.println("La actualización del último inicio del usuario "
+                + "cuyo correo es '" + email + "' se ha efectuado con éxito.");
+          
+        // Se desconecta la BD.
+        con.disconnect();
+    }
  
+    /**
+     * Método para consultar la información del empleado que se encuentra iniciando
+     * sesión.
+     * @param email Correo electrónico del usuario que está iniciando sesión
+     * @return Retorna consulta.
+     */
+    public ResultSet getDataAccess(String email){
+        
+        // Se declara e instancia la variable con la sentencia SQL para la consulta.
+        String SQL  = "SELECT \"name\", \"surname\", \"type\" FROM \"user\", "
+                    + "\"employee\" WHERE \"email\" = '" + email + "' AND "
+                    + "\"user\".\"state\" = 'A' AND \"employee\".\"state\" = 'A';";
+        
+        // Se instancia y se establece una conexión con la BD.
+        con = new ConnectionDB();
+        con.connect();
+        
+        // Se realiza y se recibe la consulta.
+        ResultSet result = con.queryConsultar(SQL);
+        
+        System.out.println("La consulta se realizó con éxito.");
+        
+        // Se desconecta la BD.
+        con.disconnect();
+        
+        // Retorna consulta.
+        return result;
+        
+    }
+    
 }

@@ -126,13 +126,16 @@ public class ControllerLogin implements java.awt.event.ActionListener {
                         support = getDataAccess(email);
                         
                         System.out.println("Los datos de acceso del usuario son: " +
-                                "Rol: " + support.get(1) + ". Nombre: " + support.get(0) + ". Sucursal: " + support.get(2));
+                                "Tipo: " + support.get(1) + ". Nombre: " + support.get(0));
                         
                         // Se oculta la view de Login.
                         login.dispose();
 
+                        // Se actualizan los datos de fechas sobre el inicio de sesión.
+                        userDB.changeDateUser(email);
+                        
                         // Se instancia el Controlador de MainMenu.
-                        mainMenu = new ControllerMainMenu(support.get(1), support.get(0), support.get(2));
+                        mainMenu = new ControllerMainMenu(support.get(1), support.get(0));
 
                     } 
                     
@@ -199,9 +202,8 @@ public class ControllerLogin implements java.awt.event.ActionListener {
         try {
             result = userDB.getDataAccess(email);
             while(result.next()){
-                support.add(result.getString("NombreEmpleado") + " " + result.getString("ApellidoEmpleado"));
-                support.add(result.getString("CodigoRol"));
-                support.add(result.getString("NombreSucursal"));
+                support.add(result.getString("name") + " " + result.getString("surname"));
+                support.add(result.getString("type"));
             }
                                     
             System.out.println("Éxito.");

@@ -17,6 +17,8 @@ public class Enterprise {
     
     private long    phone;
     
+    private double  dollarExchange;
+    
     private char    state;
 
     /**
@@ -28,10 +30,12 @@ public class Enterprise {
      * @param direction Dirección de la Empresa.
      * @param email Correo electrónico de la Empresa.
      * @param phone Teléfono de la Empresa.
+     * @param dollarExchange Cambio del dólar.
      * @param state Estado (Activo o Inactivo).
      */
     public Enterprise(int id, String rif, String name, String description, 
-            String direction, String email, long phone, char state) {
+            String direction, String email, long phone, double dollarExchange, 
+            char state) {
         
         this.id = id;
         this.rif = rif;
@@ -40,6 +44,7 @@ public class Enterprise {
         this.direction = direction;
         this.email = email;
         this.phone = phone;
+        this.dollarExchange = dollarExchange;
         this.state = state;
         
     }
@@ -100,6 +105,14 @@ public class Enterprise {
         this.phone = phone;
     }
 
+    public double getDollarExchange(){
+        return dollarExchange;
+    }
+    
+    public void setDollarExchange(double dollarExchange){
+        this.dollarExchange = dollarExchange;
+    }
+    
     public char getState() {
         return state;
     }
