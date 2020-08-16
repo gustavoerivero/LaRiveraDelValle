@@ -5,11 +5,9 @@
         <group>
             <file>file:/C:/Users/Gustavo/Documents/NetBeansProjects/LaRiveraDelValle/src/views/MainMenu.java</file>
             <file>file:/C:/Users/Gustavo/Documents/NetBeansProjects/LaRiveraDelValle/src/lib/SupportFunctions.java</file>
-            <file>file:/C:/Users/Gustavo/Documents/NetBeansProjects/LaRiveraDelValle/src/models/database/UserDB.java</file>
-            <file>file:/C:/Users/Gustavo/Documents/NetBeansProjects/LaRiveraDelValle/src/controllers/ControllerLogin.java</file>
+            <file>file:/C:/Users/Gustavo/Documents/NetBeansProjects/LaRiveraDelValle/src/models/EnterpriseBankAccount.java</file>
             <file>file:/C:/Users/Gustavo/Documents/NetBeansProjects/LaRiveraDelValle/src/views/Login.java</file>
             <file>file:/C:/Users/Gustavo/Documents/NetBeansProjects/LaRiveraDelValle/src/controllers/ControllerMainMenu.java</file>
-            <file>file:/C:/Users/Gustavo/Documents/NetBeansProjects/LaRiveraDelValle/src/views/PopupMessage.java</file>
         </group>
     </open-files>
 </project-private>
