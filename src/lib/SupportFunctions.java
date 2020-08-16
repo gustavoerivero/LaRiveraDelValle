@@ -4,6 +4,8 @@ package lib;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -235,6 +237,75 @@ public class SupportFunctions {
         
         // Retorna el valor obtenido en forma de String.
         return sb.toString();
+        
+    }
+    
+        /**
+     * Método para disminuir la opacidad de un JFrame y dar valores a variables
+     * de ubicación del Mouse.
+     * @param xx Posición del Mouse sobre el eje horizontal.
+     * @param xy Posicioón del Mouse sobre el eje vertical.
+     * @param frame JFrame a modificar su opacidad.
+     * @param evt Evento de Mouse.
+     */
+    public void mousePressed(int xx, int xy, JFrame frame, MouseEvent evt){
+        
+        //<editor-fold defaultstate="collapsed" desc=" Explicación sobre el método ">
+        /*
+         * Este método posee dos características:
+         *      1) La opacidad de la aplicación disminuye un 20%.
+         *      2) Se obtiene la ubicación del Mouse en el momento.
+         */
+        
+        // Se coloca la opacidad de la aplicación en 80%.
+        //</editor-fold>
+        frame.setOpacity((float)0.8);
+        
+        // Se obtiene la ubicación del Mouse en el momento.
+        xx = evt.getX(); // Ubicación con respecto al eje X.
+        xy = evt.getY(); // Ubicación con respecto al eje Y.
+        
+    }
+    
+    /**
+     * Método para colocar la opacidad original del JFrame.
+     * @param frame 
+     */
+    public void mouseReleased(JFrame frame){
+        
+        //<editor-fold defaultstate="collapsed" desc=" Explicación sobre el método ">
+        /*
+         * Este método devuelve la opacidad de la aplicación a su valor base.
+         */
+        
+        // Se coloca la opacidad de la aplicación en 100%.
+        //</editor-fold>
+        frame.setOpacity((float)1.0);
+        
+    }
+    
+    /**
+     * Método para reubicar el JFrame.
+     * @param xx Ubicación del mouse en el eje horizontal.
+     * @param xy Ubicación del mouse en el eje vertical.
+     * @param frame JFrame a reubicar.
+     * @param evt Evento del Mouse
+     */
+    public void mouseDragged(int xx, int xy, JFrame frame, MouseEvent evt){
+        
+        //<editor-fold defaultstate="collapsed" desc=" Explicación sobre el método ">
+        /*
+         * Este método permite mover la aplicación por toda la pantalla del
+         * computador del usuario.
+         */
+        
+        // Se declaran las variables que obtienen la ubicación de la aplicación.
+        //</editor-fold>
+        int x = evt.getXOnScreen(); // Ubicación con respecto al eje X.
+        int y = evt.getYOnScreen(); // Ubicación con respecto al eje Y.
+        
+        // Se ubica la aplicación en la nueva ubicación.
+        frame.setLocation(x - xx, y - xy);
         
     }
     

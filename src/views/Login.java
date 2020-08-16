@@ -1,13 +1,16 @@
 
 package views;
 
+import lib.SupportFunctions;
+
 /**
  * 
  * @author Gustavo
  */
 public class Login extends javax.swing.JFrame {
 
-    int xx = 0, xy = 0;
+    private int xx = 0, xy = 0;
+    private SupportFunctions support;
     
     public Login() {
         
@@ -22,6 +25,8 @@ public class Login extends javax.swing.JFrame {
         
         // Cambia el ícono del JFrame.
         //this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("images/CDV-icon.png")).getImage());
+        
+        support = new SupportFunctions();
         
     }
 
@@ -439,7 +444,7 @@ public class Login extends javax.swing.JFrame {
         int y = evt.getYOnScreen(); // Ubicación con respecto al eje Y.
         
         // Se ubica la aplicación en la nueva ubicación.
-        this.setLocation(x - xx, y - xy);
+        setLocation(x - xx, y - xy);
     }//GEN-LAST:event_panLoginMouseDragged
 
     private void btnClearMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseMoved

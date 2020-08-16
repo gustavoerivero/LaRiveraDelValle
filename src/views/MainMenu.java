@@ -1,19 +1,63 @@
 
 package views;
 
+import lib.SupportFunctions;
+
 /**
  *
  * @author Gustavo
  */
 public class MainMenu extends javax.swing.JFrame {
 
+    private int xx = 0, xy = 0;
+    
+    private SupportFunctions support;
     
     public MainMenu() {
         
         initComponents();
         
+        setLocationRelativeTo(null);
+        
+        setVisible(true);
+        
+        support = new SupportFunctions();
+        
     }
 
+    //<editor-fold defaultstate="collapsed" desc=" Listeners ">
+    
+    /**
+     * Método que se activa al realizar una acción (presionar click sobre algún 
+     * botón) añadiendo este evento a una lista que será manejada con mayor 
+     * profundidad en el Controlador correspondiente.
+     * Este método hace uso de la clase abstracta ActionListener la cual está 
+     * fuertemente vinculada a todas las acciones provocadas por botones.
+     * @param evt 
+     */
+    public void addActionEvents(java.awt.event.ActionListener evt){
+        
+        
+        
+    }
+    
+    /**
+     * Método que se activa al realizar una acción (presionar click sobre algún 
+     * objeto) añadiendo este evento a una lista que será manejada con mayor 
+     * profundidad en el Controlador correspondiente.
+     * Este método hace uso de la clase abstracta MouseListener la cual está 
+     * fuertemente vinculada a todas las acciones provocadas por acciones en 
+     * cietos tipos de objetos.
+     * @param evt 
+     */
+    public void addMouseEvents(java.awt.event.MouseListener evt){
+        
+        
+        
+    }
+    
+    //</editor-fold>
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,6 +72,24 @@ public class MainMenu extends javax.swing.JFrame {
         panMainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(249, 249, 249));
+        setUndecorated(true);
+        setResizable(false);
+
+        panTopBar.setBackground(new java.awt.Color(249, 249, 249));
+        panTopBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panTopBarMouseDragged(evt);
+            }
+        });
+        panTopBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panTopBarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                panTopBarMouseReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout panTopBarLayout = new javax.swing.GroupLayout(panTopBar);
         panTopBar.setLayout(panTopBarLayout);
@@ -40,6 +102,8 @@ public class MainMenu extends javax.swing.JFrame {
             .addGap(0, 50, Short.MAX_VALUE)
         );
 
+        panLateralMenu.setBackground(new java.awt.Color(249, 249, 249));
+
         javax.swing.GroupLayout panLateralMenuLayout = new javax.swing.GroupLayout(panLateralMenu);
         panLateralMenu.setLayout(panLateralMenuLayout);
         panLateralMenuLayout.setHorizontalGroup(
@@ -50,6 +114,8 @@ public class MainMenu extends javax.swing.JFrame {
             panLateralMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 598, Short.MAX_VALUE)
         );
+
+        panMainPanel.setBackground(new java.awt.Color(249, 249, 249));
 
         javax.swing.GroupLayout panMainPanelLayout = new javax.swing.GroupLayout(panMainPanel);
         panMainPanel.setLayout(panMainPanelLayout);
@@ -84,6 +150,50 @@ public class MainMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void panTopBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTopBarMouseDragged
+        //<editor-fold defaultstate="collapsed" desc=" Explicación sobre el método ">
+        /*
+         * Este método permite mover la aplicación por toda la pantalla del
+         * computador del usuario.
+         */
+        
+        // Se declaran las variables que obtienen la ubicación de la aplicación.
+        //</editor-fold>
+        int x = evt.getXOnScreen(); // Ubicación con respecto al eje X.
+        int y = evt.getYOnScreen(); // Ubicación con respecto al eje Y.
+        
+        // Se ubica la aplicación en la nueva ubicación.
+        setLocation(x - xx, y - xy);
+    }//GEN-LAST:event_panTopBarMouseDragged
+
+    private void panTopBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTopBarMousePressed
+        //<editor-fold defaultstate="collapsed" desc=" Explicación sobre el método ">
+        /*
+         * Este método posee dos características:
+         *      1) La opacidad de la aplicación disminuye un 20%.
+         *      2) Se obtiene la ubicación del Mouse en el momento.
+         */
+        
+        // Se coloca la opacidad de la aplicación en 80%.
+        //</editor-fold>
+        setOpacity((float)0.8);
+        
+        // Se obtiene la ubicación del Mouse en el momento.
+        xx = evt.getX(); // Ubicación con respecto al eje X.
+        xy = evt.getY(); // Ubicación con respecto al eje Y.
+    }//GEN-LAST:event_panTopBarMousePressed
+
+    private void panTopBarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTopBarMouseReleased
+        //<editor-fold defaultstate="collapsed" desc=" Explicación sobre el método ">
+        /*
+         * Este método devuelve la opacidad de la aplicación a su valor base.
+         */
+        
+        // Se coloca la opacidad de la aplicación en 100%.
+        //</editor-fold>
+        setOpacity((float)1.0);
+    }//GEN-LAST:event_panTopBarMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel panLateralMenu;

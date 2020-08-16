@@ -296,19 +296,24 @@ public class UserDB {
             // Se realiza la consulta y se obtiene el resultado.
             java.sql.ResultSet rs = con.queryConsultar(SQL);
             
+            // Se ubica el resultado obtenido.
+            rs.next();
+            
+            // Se obtiene la fecha de la base de datos.
+            Date obtainedDate = rs.getDate("firstSession");
+            
+            // Se comparan las fechas. Si no hay "primer inicio" retorna 'true'..
+            if(obtainedDate == null)
+                return true;
+            
             // Se desconecta la BD.
             con.disconnect();
             
-            // Si se obtuvo un resultado de tipo 'null' (que tiene que ser único) retorna 'true'.
-            if(rs.getDate("firstSession") == null)
-                return true;
-            
-            
         } catch (java.sql.SQLException ex){
-            System.out.println("No se pudo encontrar el usuario. Error: " + ex);
+            System.out.println("Error en la comparación de fechas: " + ex);
         }
         
-        // De no encontrarse un resultado 'null', retorna 'false'.
+        // Si existe una fecha en el "primer inicio" retorna 'false'.
         return false;
         
     }
@@ -321,18 +326,15 @@ public class UserDB {
         
         // Se declara la variable de sentencia SQL.
         String SQL = "";
-        
-        // Se declara e instancia la variable 'date' para indicar el momento del 'primer inicio' o 'último inicio' de sesión.
-        Date date = new Date();
-        
+                
         // Se instancia y se establece una conexión con la BD.
         con = new ConnectionDB();
         con.connect();
             
         if(firstSessionUser(email)){
             
-            SQL = "UPDATE \"user\" SET \"firstSession\" = " + date
-                + "WHERE \"email\" = '" + email + "';";
+            SQL = "UPDATE \"user\" SET \"firstSession\" = '" + new Date()
+                + "' WHERE \"email\" = '" + email + "';";
             
             // Se realiza la inserción de datos.
             con.queryInsert(SQL);
@@ -343,8 +345,8 @@ public class UserDB {
             
         }
             
-        SQL = "UPDATE \"user\" SET \"lastSession\" = " + date
-            + "WHERE \"email\" = '" + email + "';";        
+        SQL = "UPDATE \"user\" SET \"lastSession\" = '" + new Date()
+            + "' WHERE \"email\" = '" + email + "';";        
         
         // Se realiza la inserción de datos.
         con.queryInsert(SQL);

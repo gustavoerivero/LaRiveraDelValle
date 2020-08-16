@@ -28,8 +28,8 @@ public class ControllerLogin implements java.awt.event.ActionListener {
         private UserDB userDB;
         
         // Controllers
-        private ControllerForgotPass forgot;
-        private ControllerMainMenu mainMenu;
+        private ControllerForgotPass ctrlForgot;
+        private ControllerMainMenu ctrlMainMenu;
     
         
     // Se declaran clases de soporte.
@@ -115,11 +115,11 @@ public class ControllerLogin implements java.awt.event.ActionListener {
                         // Se muestra quién ingresó al sistema.
                         System.out.println("El usuario '" + email + "' ha ingresado al"
                                 + " sistema con la contraseña '" + pass + "'.");
-
+/*
                         // Se muestra un mensaje emergente de "Bienvenido".
                         popup = new PopupMessage(login, true, 4, 
                                 "Bienvenido");
-                        
+                        */
                         ArrayList<String> support = new ArrayList<>();
                         
                         // Se obtienen los datos de acceso del usuario.
@@ -135,7 +135,7 @@ public class ControllerLogin implements java.awt.event.ActionListener {
                         userDB.changeDateUser(email);
                         
                         // Se instancia el Controlador de MainMenu.
-                        mainMenu = new ControllerMainMenu(support.get(1), support.get(0));
+                        ctrlMainMenu = new ControllerMainMenu(support.get(1), support.get(0));
 
                     } 
                     
@@ -179,7 +179,7 @@ public class ControllerLogin implements java.awt.event.ActionListener {
         else if(evt.getSource() == login.btnForgotPass){
             
             // Se instancia la clase para recuperar contraseña.
-            forgot = new ControllerForgotPass();
+            ctrlForgot = new ControllerForgotPass();
             
         }
         
